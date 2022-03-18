@@ -9,7 +9,7 @@ public class Requetes {
         this.corps = corp ;
     }
     public String afficher(){
-        return type_requetes +" author:" + author + '\n' +
+        return type_requetes +" author : " + author + '\n' +
                 "corps : " + corps + '\n';
     }
 }

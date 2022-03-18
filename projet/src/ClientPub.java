@@ -42,4 +42,8 @@ public class ClientPub {
 
         }
     }
+
+    public void connexion(){
+        //TODO THIS NIGHT NOT TOMORROW
+    }
 }
