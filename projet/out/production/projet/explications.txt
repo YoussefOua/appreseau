@@ -1,0 +1,23 @@
+********************** Binome : MAHMOUDI Abdelhaq et OUAHNICH Youssef **********************
+Base de données :
+    Server
+    Client
+    Message
+    Requete
+    Requete
+    Reponse
+
+On a utilisé Server et client TCP pour établir une connexion puis
+pour publier des messages on a codé une structure pour afficher les requetes
+client et une pour les réponses du serveur aux requetes or la classe requetes s'occupe
+ d'afficher les requetes(entete corps et reponse) mais on n'a pas encore finalisé notre travail
+ car on a eu des difficultés à comprendre le mode opératoire requete/réponse
+ Donc notre travail va etre plus structuré pour le rendu final car pour ce rendu on n'a pas respecté
+ certains principes de programmation parce qu'on a cherché à trouver une structure qui pourra comprendre
+ toutes les requetes demandées (PUBLISH, RCV_IDS ...)
+
+ Execution du rendu :
+
+ Pour lancer ce rendu, vous devez d'abord lancer le serveur puis le clientPub
+    ensuite le client vous demandera le pseudo vous tapez entrer et le client vous demandera le corps de votre message
+    vous tapez entrer et le serveur s'occupe de l'affichage de votre message
