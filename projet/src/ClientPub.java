@@ -34,6 +34,7 @@ public class ClientPub {
                 modifiedSentence = inFromServer.readLine();
                 System.out.println("Du serveur: " + modifiedSentence);
 
+
             }
             while (!modifiedSentence.equals("EOF"));
             System.out.println(modifiedSentence);
