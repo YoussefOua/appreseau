@@ -1,9 +1,10 @@
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.concurrent.Executor;
@@ -42,12 +43,9 @@ public class ServerRudi {
     public static class Handler implements Runnable {
         Socket socketClient;
         Scanner in;
-        String msg;
+        static String msg;
         String typereqt;
-        String author_treq;
-        static ArrayList<String> list_users = new ArrayList<>();
-        static ArrayList<String> list_ids = new ArrayList<>();
-
+        static String author_treq;
 
         public Handler(Socket socket) throws IOException {
             this.socketClient = socket;
@@ -59,9 +57,26 @@ public class ServerRudi {
 
         }
 
-        public void addMsg_TO_DT(){
-            list_users.add(author_treq.substring(author_treq.indexOf("@")));
-            list_ids.add(msg.substring(author_treq.indexOf(": ")));
+        // Ajouter les users comme key et les message comme valeur
+        public static void addUsers_TO_HashMap(){
+            String auteur  = author_treq.substring(author_treq.indexOf("@")) ;
+            String messages = msg.substring(author_treq.indexOf(": "));
+            //if(!hashMap.containsKey(auteur) ) {
+                hashMap.put(auteur , messages);
+            /*}else{
+                System.out.println("-------- Auteur existe deja ---------");
+                ArrayList list_of_Msg = new ArrayList();
+                list_of_Msg.add(messages);
+                hashMap.put(auteur , list_of_Msg.toString());
+            }
+
+             */
+
+        }
+
+        // afficher la hashmap contenant les auteurs et leurs messages
+        public static void AfficherHashMap(){
+            System.out.println(hashMap.toString() +"---------"+ hashMap.values());
         }
 
 
@@ -118,15 +133,10 @@ public class ServerRudi {
         public void run() {
 
             choice_request();
-            list_users.add(author_treq.substring(author_treq.indexOf("@")));
-            list_ids.add(msg.substring(author_treq.indexOf(": ")));
-            hashMap.put(list_users.toString() , list_ids.toString()) ;
-            System.out.println(hashMap.toString());// hshmap contenant les msg de chaque user
+            addUsers_TO_HashMap();// Ajouter les users comme key et les message comme valeur
+            AfficherHashMap();// hshmap contenant les msg de chaque user
+            //System.out.println(Follower.RCV_IDS(2));
 
-
-           // System.out.println(RCV_ID_REQUEST());// permet de choisir la bonne requete et lance la méthode pour
-            //System.out.println(list_users.get(1));
-            //System.out.println("run ---------------************" +list_ids.get(0));
         }
     }
 }
