@@ -21,16 +21,22 @@ public class ClientPub {
         while (true) {
             do {
                 System.out.print("Entrez votre message: ");
-                while (inFromUser.hasNext()) {
 
+                while (inFromUser.hasNext()) {
                     String content = inFromUser.nextLine();
                     Message msg = new Message(content);
-
                     Requetes requetes = new Requetes(user.nom, msg.contenu , Type_Requetes.PUBLISH);
                     outToServer.writeBytes(requetes.afficher());
-                    //outToServer.flush();
-                }
+                    outToServer.flush();
 
+
+
+                }
+                while (inFromServer != null) {
+                    String msgFromServer;
+                    msgFromServer = inFromServer.readLine();
+                    System.out.println("Serveur : " + msgFromServer);
+                }
                 modifiedSentence = inFromServer.readLine();
                 System.out.println("Du serveur: " + modifiedSentence);
 
@@ -39,10 +45,8 @@ public class ClientPub {
             while (!modifiedSentence.equals("EOF"));
             System.out.println(modifiedSentence);
             clientSocket.close();
-
-
+            }
         }
-    }
 
     public void connexion(){
         //TODO THIS NIGHT NOT TOMORROW
